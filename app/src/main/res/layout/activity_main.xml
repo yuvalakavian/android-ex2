@@ -8,12 +8,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.ex2.MainActivity">
 
-    <include
-        layout="@layout/app_bar_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
