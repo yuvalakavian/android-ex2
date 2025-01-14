@@ -19,20 +19,33 @@ class MainActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val fab = findViewById<FloatingActionButton>(R.id.fab_add_student)
 
-        var studentsList = ArrayList<Student>()
         // Sample data
-        studentsList.add(Student("John Doe", "123456789", false))
-        studentsList.add(Student("Jane Smith", "987654321", true))
-        studentsList.add(Student("Adam Gray", "456789121", true))
+        StudentRepository.addStudent(
+            Student(
+                "123456789",
+                "John Doe",
+                false,
+                "New York",
+            "0542821542",
+            ))
+        StudentRepository.addStudent(Student(
+            "987654321",
+            "Jane Smith",
+            true,
+            "New York",
+            "541234567",
+            ))
+        StudentRepository.addStudent(Student(
+            "456789121",
+            "Adam Gray",
+            true,
+            "New York",
+            "54221584",
+            ))
 
-        adapter = StudentsAdapter(studentsList, { student: Student? ->
-            //Open student details
-//            val intent = Intent(
-//                this@MainActivity,
-////                StudentDetailsActivity::class.java
-////            )
-//            intent.putExtra("student", student)
-//            startActivity(intent)
+        val studentsList = StudentRepository.getStudents()
+        adapter = StudentsAdapter(studentsList,{ student: Student? ->
+
         }, { updatedStudent: Student ->
             // Handle checkbox click
             Toast.makeText(
@@ -53,5 +66,24 @@ class MainActivity : AppCompatActivity() {
             )
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val studentsList = StudentRepository.getStudents()
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+
+        adapter = StudentsAdapter(studentsList,{ student: Student? ->
+        }, { updatedStudent: Student ->
+            // Handle checkbox click
+            Toast.makeText(
+                this@MainActivity,
+                updatedStudent.name + " check status updated",
+                Toast.LENGTH_SHORT
+            ).show()
+        })
+
+        recyclerView.setLayoutManager(LinearLayoutManager(this))
+        recyclerView.setAdapter(adapter)
     }
 }
