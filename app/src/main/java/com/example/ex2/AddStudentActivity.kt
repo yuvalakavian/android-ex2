@@ -2,6 +2,7 @@ package com.example.ex2
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,21 +15,31 @@ class AddStudentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_student)
 
         val button_add_student = findViewById<Button>(R.id.button_add_student)
+        val button_cancel = findViewById<Button>(R.id.button_cancel)
         val edit_text_id = findViewById<EditText>(R.id.editText_id)
         val edit_text_name = findViewById<EditText>(R.id.editText_name)
-
+        val edit_text_address = findViewById<EditText>(R.id.editText_address)
+        val edit_text_phone = findViewById<EditText>(R.id.editText_phone)
+        val checkbox_checked = findViewById<CheckBox>(R.id.checkbox_checked)
 
         button_add_student.setOnClickListener {
             val id = edit_text_id.text.toString().trim()
             val name = edit_text_name.text.toString().trim()
+            val address = edit_text_address.text.toString().trim()
+            val phone = edit_text_phone.text.toString().trim()
+            val checkbox_checked_val = checkbox_checked.isChecked()
 
-            if (name.isEmpty() || id.isEmpty()) {
+            if (id.isEmpty() || name.isEmpty() || address.isEmpty() || phone.isEmpty()) {
                 Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            StudentRepository.addStudent(Student(name, id, false))
+            StudentRepository.addStudent(Student(id, name, checkbox_checked_val, address, phone))
             Toast.makeText(this, "Student added successfully!", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+
+        button_cancel.setOnClickListener {
             finish()
         }
     }
