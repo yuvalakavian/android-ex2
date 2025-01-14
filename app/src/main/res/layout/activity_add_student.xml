@@ -43,7 +43,7 @@
 
         <!-- Name -->
         <EditText
-            android:id="@+id/editText_name"
+            android:id="@+id/activity_add_student_edittext_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="name"
@@ -52,7 +52,7 @@
 
         <!-- ID -->
         <EditText
-            android:id="@+id/editText_id"
+            android:id="@+id/activity_add_student_edittext_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="id"
@@ -61,7 +61,7 @@
 
         <!-- Phone -->
         <EditText
-            android:id="@+id/editText_phone"
+            android:id="@+id/activity_add_student_edittext_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="phone"
@@ -70,7 +70,7 @@
 
         <!-- Address -->
         <EditText
-            android:id="@+id/editText_address"
+            android:id="@+id/activity_add_student_edittext_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="address"
@@ -79,7 +79,7 @@
 
         <!-- Checked Checkbox -->
         <CheckBox
-            android:id="@+id/checkbox_checked"
+            android:id="@+id/activity_add_student_checkbox_checked"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="checked"
