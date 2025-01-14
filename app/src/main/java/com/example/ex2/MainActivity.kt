@@ -45,7 +45,13 @@ class MainActivity : AppCompatActivity() {
 
         val studentsList = StudentRepository.getStudents()
         adapter = StudentsAdapter(studentsList,{ student: Student? ->
+            //Open student details
+            val intent = Intent(
+                this@MainActivity,
+                StudentDetailsActivity::class.java
+            )
 
+            startActivity(intent)
         }, { updatedStudent: Student ->
             // Handle checkbox click
             Toast.makeText(

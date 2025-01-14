@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Ex2"
         tools:targetApi="31">
         <activity
+            android:name=".EditStudentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StudentDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Ex2">
@@ -22,8 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddStudentActivity">
-        </activity>
+        <activity android:name=".AddStudentActivity" />
     </application>
 
 </manifest>

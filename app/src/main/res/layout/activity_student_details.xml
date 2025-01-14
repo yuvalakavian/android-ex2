@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.Material3.ActionBar"
-        app:title="Add Student" />
+        app:title="Student Details" />
 
     <!-- Main Layout -->
     <LinearLayout
@@ -42,17 +42,16 @@
             android:layout_marginBottom="16dp" />
 
         <!-- Name -->
-        <EditText
-            android:id="@+id/editText_name"
+        <TextView
+            android:id="@+id/add_student_activity_name_view_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="name"
-            android:inputType="textPersonName"
+            android:text="Name"
             android:layout_marginBottom="8dp" />
 
         <!-- ID -->
-        <EditText
-            android:id="@+id/editText_id"
+        <TextView
+            android:id="@+id/add_student_activity_id_view_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="id"
@@ -60,8 +59,8 @@
             android:layout_marginBottom="8dp" />
 
         <!-- Phone -->
-        <EditText
-            android:id="@+id/editText_phone"
+        <TextView
+            android:id="@+id/add_student_activity_phone_view_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="phone"
@@ -69,8 +68,8 @@
             android:layout_marginBottom="8dp" />
 
         <!-- Address -->
-        <EditText
-            android:id="@+id/editText_address"
+        <TextView
+            android:id="@+id/add_student_activity_address_view_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="address"
@@ -93,18 +92,11 @@
             android:weightSum="100">
 
             <Button
-                android:id="@+id/button_cancel"
+                android:id="@+id/buttonEdit"
                 android:layout_weight="50"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="CANCEL" />
-
-            <Button
-                android:id="@+id/button_add_student"
-                android:layout_weight="50"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="SAVE" />
+                android:text="EDIT" />
 
         </LinearLayout>
     </LinearLayout>

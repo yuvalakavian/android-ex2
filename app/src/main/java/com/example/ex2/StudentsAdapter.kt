@@ -1,5 +1,6 @@
 package com.example.ex2
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +38,11 @@ class StudentsAdapter(
 
             itemView.setOnClickListener {
                 onRowClick(student)
+                val context = itemView.context
+                val intent = Intent(context, StudentDetailsActivity::class.java).apply {
+                    putExtra("id", student.id)
+                }
+                context.startActivity(intent)
             }
 
             checkBox.setOnCheckedChangeListener(null) // Avoid triggering onCheckClick during bind
