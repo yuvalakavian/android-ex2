@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,6 +16,7 @@ class StudentDetailsActivity : AppCompatActivity() {
     private lateinit var idTextView: TextView
     private lateinit var phoneNumberTextView: TextView
     private lateinit var addressTextView: TextView
+    private var REQUEST_CODE_EDIT = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,20 +32,37 @@ class StudentDetailsActivity : AppCompatActivity() {
         val editButton: Button = findViewById(R.id.buttonEdit)
         editButton.setOnClickListener {
             val intent = Intent(this, EditStudentActivity::class.java)
+            startActivityForResult(intent, REQUEST_CODE_EDIT)
             intent.putExtra("id", studentId)
+            intent.putExtra("name", nameTextView.text)
+            intent.putExtra("phoneNumber", phoneNumberTextView.text)
+            intent.putExtra("address", addressTextView.text)
             startActivity(intent)
         }
 
-        refreshStudentDetails()
+        refreshDetails()
     }
 
     override fun onResume() {
         super.onResume()
-        refreshStudentDetails()
+        refreshDetails()
     }
 
-    private fun refreshStudentDetails() {
-        val student = StudentRepository.getStudents().find { it.id == studentId }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_CODE_EDIT && resultCode == RESULT_OK) {
+            val updatedStudentId = data?.getStringExtra("updatedStudentId")
+            if (updatedStudentId != null) {
+                // Handle the updated student ID (e.g., refresh the details view)
+                Toast.makeText(this, "Updated Student ID: $updatedStudentId", Toast.LENGTH_SHORT).show()
+                refreshDetails(updatedStudentId) // Example method to refresh details
+            }
+        }
+    }
+
+    private fun refreshDetails(id: String = studentId ) {
+        val student = StudentRepository.getStudents().find { it.id == id }
         student?.let {
             nameTextView.text = "Name: ${it.name}"
             idTextView.text = "ID: ${it.id}"

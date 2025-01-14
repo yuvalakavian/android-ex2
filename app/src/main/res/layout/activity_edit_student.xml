@@ -100,14 +100,14 @@
                 android:text="CANCEL" />
 
             <Button
-                android:id="@+id/delete_cancel"
+                android:id="@+id/button_delete"
                 android:layout_weight="33"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="DELETE" />
 
             <Button
-                android:id="@+id/button_add_student"
+                android:id="@+id/button_save"
                 android:layout_weight="33"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
