@@ -52,7 +52,7 @@ class EditStudentActivity : AppCompatActivity() {
 
         // Cancel button
         buttonCancel.setOnClickListener {
-            finishAndReloadStudentDetails(studentId)
+            finish()
         }
 
         // Remove student functionality

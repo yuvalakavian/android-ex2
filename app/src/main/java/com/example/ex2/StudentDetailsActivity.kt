@@ -17,7 +17,6 @@ class StudentDetailsActivity : AppCompatActivity() {
     private lateinit var phoneNumberTextView: TextView
     private lateinit var addressTextView: TextView
     private lateinit var checkboxChecked: CheckBox
-    private var REQUEST_CODE_EDIT = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +33,6 @@ class StudentDetailsActivity : AppCompatActivity() {
         val editButton: Button = findViewById(R.id.student_details_activity_button_edit)
         editButton.setOnClickListener {
             val intent = Intent(this, EditStudentActivity::class.java)
-            startActivityForResult(intent, REQUEST_CODE_EDIT)
             intent.putExtra("id", studentId)
             intent.putExtra("name", nameTextView.text)
             intent.putExtra("phoneNumber", phoneNumberTextView.text)
