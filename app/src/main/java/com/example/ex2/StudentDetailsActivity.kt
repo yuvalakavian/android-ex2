@@ -1,11 +1,13 @@
 package com.example.ex2
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
 class StudentDetailsActivity : AppCompatActivity() {
@@ -41,26 +43,11 @@ class StudentDetailsActivity : AppCompatActivity() {
 
             startActivity(intent)
         }
-
-        refreshDetails()
     }
 
     override fun onResume() {
         super.onResume()
         refreshDetails()
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == REQUEST_CODE_EDIT && resultCode == RESULT_OK) {
-            val updatedStudentId = data?.getStringExtra("updatedStudentId")
-            if (updatedStudentId != null) {
-                // Handle the updated student ID (e.g., refresh the details view)
-                Toast.makeText(this, "Updated Student ID: $updatedStudentId", Toast.LENGTH_SHORT).show()
-                refreshDetails(updatedStudentId) // Example method to refresh details
-            }
-        }
     }
 
     private fun refreshDetails(id: String = studentId ) {

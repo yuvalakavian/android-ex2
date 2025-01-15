@@ -13,8 +13,6 @@ class EditStudentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_student)
 
-        val REQUEST_CODE_EDIT = 100
-
         // Retrieve intent extras
         val studentId = intent.getStringExtra("id") ?: ""
         val studentName = intent.getStringExtra("name") ?: ""
@@ -24,12 +22,16 @@ class EditStudentActivity : AppCompatActivity() {
         // Find views by ID
         val buttonCancel = findViewById<Button>(R.id.edit_student_details_activity_button_cancel)
         val buttonDelete = findViewById<Button>(R.id.edit_student_details_activity_button_delete)
-        val buttonUpdateStudent = findViewById<Button>(R.id.edit_student_details_activity_button_save)
+        val buttonUpdateStudent =
+            findViewById<Button>(R.id.edit_student_details_activity_button_save)
         val editTextId = findViewById<EditText>(R.id.edit_student_details_activity_edittext_id)
         val editTextName = findViewById<EditText>(R.id.edit_student_details_activity_edittext_name)
-        val editTextAddress = findViewById<EditText>(R.id.edit_student_details_activity_edittext_address)
-        val editTextPhone = findViewById<EditText>(R.id.edit_student_details_activity_edittext_phone)
-        val checkboxChecked = findViewById<CheckBox>(R.id.edit_student_details_activity_checkbox_checked)
+        val editTextAddress =
+            findViewById<EditText>(R.id.edit_student_details_activity_edittext_address)
+        val editTextPhone =
+            findViewById<EditText>(R.id.edit_student_details_activity_edittext_phone)
+        val checkboxChecked =
+            findViewById<CheckBox>(R.id.edit_student_details_activity_checkbox_checked)
 
         // Fetch student data from repository or fallback to intent extras
         val student = StudentRepository.getStudents().find { it.id == studentId }
@@ -50,7 +52,7 @@ class EditStudentActivity : AppCompatActivity() {
 
         // Cancel button
         buttonCancel.setOnClickListener {
-            finish()
+            finishAndReloadStudentDetails(studentId)
         }
 
         // Remove student functionality
@@ -74,21 +76,28 @@ class EditStudentActivity : AppCompatActivity() {
             val name = editTextName.text.toString().trim()
             val address = editTextAddress.text.toString().trim()
             val phone = editTextPhone.text.toString().trim()
-            val checkboxCheckedVal =  checkboxChecked.isChecked
+            val checkboxCheckedVal = checkboxChecked.isChecked
 
             if (id.isEmpty() || name.isEmpty() || address.isEmpty() || phone.isEmpty()) {
                 Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            StudentRepository.updateStudent(studentId, Student(id, name, checkboxCheckedVal, address, phone))
-            Toast.makeText(this, "Student added successfully!", Toast.LENGTH_SHORT).show()
-
-            val resultIntent = Intent()
-            resultIntent.putExtra("updatedStudentId", id)
-            setResult(RESULT_OK, resultIntent)
+            StudentRepository.updateStudent(
+                studentId,
+                Student(id, name, checkboxCheckedVal, address, phone)
+            )
+            Toast.makeText(this, "Student updated successfully!", Toast.LENGTH_SHORT).show()
 
             // Finish the activity
-            finish()        }
+            finishAndReloadStudentDetails(id)
+        }
+    }
+
+    private fun finishAndReloadStudentDetails(id :String){
+        val intent = Intent(this, StudentDetailsActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        intent.putExtra("id", id)
+        startActivity(intent)
     }
 }
