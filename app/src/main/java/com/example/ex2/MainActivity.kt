@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.setLayoutManager(LinearLayoutManager(this))
         recyclerView.setAdapter(adapter)
 
-        fab.setOnClickListener { v: View? ->
+        fab.setOnClickListener {
             //Navigate to Add Student Activity
             val intent = Intent(
                 this@MainActivity,
