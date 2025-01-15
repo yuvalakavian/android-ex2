@@ -27,14 +27,14 @@ class AddStudentActivity : AppCompatActivity() {
             val name = edit_text_name.text.toString().trim()
             val address = edit_text_address.text.toString().trim()
             val phone = edit_text_phone.text.toString().trim()
-            val checkbox_checked_val = checkbox_checked.isChecked()
+            val checkboxCheckedVal = checkbox_checked.isChecked
 
             if (id.isEmpty() || name.isEmpty() || address.isEmpty() || phone.isEmpty()) {
                 Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            StudentRepository.addStudent(Student(id, name, checkbox_checked_val, address, phone))
+            StudentRepository.addStudent(Student(id, name, checkboxCheckedVal, address, phone))
             Toast.makeText(this, "Student added successfully!", Toast.LENGTH_SHORT).show()
             finish()
         }
