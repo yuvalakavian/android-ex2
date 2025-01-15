@@ -3,12 +3,10 @@ package com.example.ex2
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class StudentDetailsActivity : AppCompatActivity() {
     private lateinit var studentId: String
@@ -16,6 +14,7 @@ class StudentDetailsActivity : AppCompatActivity() {
     private lateinit var idTextView: TextView
     private lateinit var phoneNumberTextView: TextView
     private lateinit var addressTextView: TextView
+    private lateinit var checkboxChecked: CheckBox
     private var REQUEST_CODE_EDIT = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,12 +23,13 @@ class StudentDetailsActivity : AppCompatActivity() {
 
         studentId = intent.getStringExtra("id") ?: return
 
-        nameTextView = findViewById(R.id.add_student_activity_name_view_text)
-        idTextView = findViewById(R.id.add_student_activity_id_view_text)
-        phoneNumberTextView = findViewById(R.id.add_student_activity_phone_view_text)
-        addressTextView = findViewById(R.id.add_student_activity_address_view_text)
+        nameTextView = findViewById(R.id.student_details_activity_textview_name)
+        idTextView = findViewById(R.id.student_details_activity_textview_id)
+        phoneNumberTextView = findViewById(R.id.student_details_activity_textview_phone)
+        addressTextView = findViewById(R.id.student_details_activity_textview_address)
+        checkboxChecked = findViewById(R.id.student_details_activity_checkbox_checked)
 
-        val editButton: Button = findViewById(R.id.buttonEdit)
+        val editButton: Button = findViewById(R.id.student_details_activity_button_edit)
         editButton.setOnClickListener {
             val intent = Intent(this, EditStudentActivity::class.java)
             startActivityForResult(intent, REQUEST_CODE_EDIT)
@@ -37,6 +37,8 @@ class StudentDetailsActivity : AppCompatActivity() {
             intent.putExtra("name", nameTextView.text)
             intent.putExtra("phoneNumber", phoneNumberTextView.text)
             intent.putExtra("address", addressTextView.text)
+            intent.putExtra("is_checked", checkboxChecked.isChecked)
+
             startActivity(intent)
         }
 
@@ -68,6 +70,8 @@ class StudentDetailsActivity : AppCompatActivity() {
             idTextView.text = "ID: ${it.id}"
             phoneNumberTextView.text = "Phone Number: ${it.phoneNumber}"
             addressTextView.text = "Address: ${it.address}"
+            checkboxChecked.isChecked = it.isChecked
+
         }
     }
 }

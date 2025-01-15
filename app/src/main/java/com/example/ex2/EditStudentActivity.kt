@@ -5,12 +5,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class EditStudentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,14 +22,14 @@ class EditStudentActivity : AppCompatActivity() {
         val studentAddress = intent.getStringExtra("address") ?: ""
 
         // Find views by ID
-        val buttonCancel = findViewById<Button>(R.id.button_cancel)
-        val buttonDelete = findViewById<Button>(R.id.button_delete)
-        val buttonUpdateStudent = findViewById<Button>(R.id.button_save)
-        val editTextId = findViewById<EditText>(R.id.editText_id)
-        val editTextName = findViewById<EditText>(R.id.editText_name)
-        val editTextAddress = findViewById<EditText>(R.id.editText_address)
-        val editTextPhone = findViewById<EditText>(R.id.editText_phone)
-        val checkboxChecked = findViewById<CheckBox>(R.id.checkbox_checked)
+        val buttonCancel = findViewById<Button>(R.id.edit_student_details_activity_button_cancel)
+        val buttonDelete = findViewById<Button>(R.id.edit_student_details_activity_button_delete)
+        val buttonUpdateStudent = findViewById<Button>(R.id.edit_student_details_activity_button_save)
+        val editTextId = findViewById<EditText>(R.id.edit_student_details_activity_edittext_id)
+        val editTextName = findViewById<EditText>(R.id.edit_student_details_activity_edittext_name)
+        val editTextAddress = findViewById<EditText>(R.id.edit_student_details_activity_edittext_address)
+        val editTextPhone = findViewById<EditText>(R.id.edit_student_details_activity_edittext_phone)
+        val checkboxChecked = findViewById<CheckBox>(R.id.edit_student_details_activity_checkbox_checked)
 
         // Fetch student data from repository or fallback to intent extras
         val student = StudentRepository.getStudents().find { it.id == studentId }
@@ -43,6 +39,7 @@ class EditStudentActivity : AppCompatActivity() {
             editTextName.setText(student.name)
             editTextAddress.setText(student.address)
             editTextPhone.setText(student.phoneNumber)
+            checkboxChecked.isChecked = student.isChecked
         } else {
             // Populate fallback data from intent
             editTextId.setText(studentId)
@@ -77,14 +74,14 @@ class EditStudentActivity : AppCompatActivity() {
             val name = editTextName.text.toString().trim()
             val address = editTextAddress.text.toString().trim()
             val phone = editTextPhone.text.toString().trim()
-            val checkbox_checked_val =  checkboxChecked.isChecked()
+            val checkboxCheckedVal =  checkboxChecked.isChecked
 
             if (id.isEmpty() || name.isEmpty() || address.isEmpty() || phone.isEmpty()) {
                 Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            StudentRepository.updateStudent(studentId, Student(id, name, checkbox_checked_val, address, phone))
+            StudentRepository.updateStudent(studentId, Student(id, name, checkboxCheckedVal, address, phone))
             Toast.makeText(this, "Student added successfully!", Toast.LENGTH_SHORT).show()
 
             val resultIntent = Intent()
