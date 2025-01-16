@@ -7,6 +7,8 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.ex2.Model.Student
+import com.example.ex2.Model.StudentRepository
 import androidx.appcompat.widget.Toolbar
 
 class EditStudentActivity : AppCompatActivity() {
@@ -81,7 +83,6 @@ class EditStudentActivity : AppCompatActivity() {
                 Toast.makeText(this, "Student not found!", Toast.LENGTH_SHORT).show()
             }
         }
-
 
         // Update student functionality
         buttonUpdateStudent.setOnClickListener {

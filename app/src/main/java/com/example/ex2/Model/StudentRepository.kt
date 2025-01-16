@@ -1,4 +1,4 @@
-package com.example.ex2
+package com.example.ex2.Model
 
 object StudentRepository {
     private val students = mutableListOf<Student>()

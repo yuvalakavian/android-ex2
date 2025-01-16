@@ -1,13 +1,13 @@
 package com.example.ex2
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import com.example.ex2.Model.StudentRepository
 
 class StudentDetailsActivity : AppCompatActivity() {
     private lateinit var studentId: String
@@ -29,8 +29,15 @@ class StudentDetailsActivity : AppCompatActivity() {
 
         // Handle navigation click
         toolbar.setNavigationOnClickListener {
-            onBackPressedDispatcher.onBackPressed() // Go back to the previous screen
-        }
+            if (isTaskRoot) {
+                // If this is the root of the task, navigate to MainActivity instead of closing the app
+                val intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                finish() // Close the current activity
+            } else {
+                onBackPressedDispatcher.onBackPressed() // Navigate back normally
+            }        }
 
         // Retrieve intent extras
         studentId = intent.getStringExtra("id") ?: return
