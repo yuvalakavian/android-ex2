@@ -6,6 +6,8 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.ex2.Model.Student
+import com.example.ex2.Model.StudentRepository
 
 
 class AddStudentActivity : AppCompatActivity() {

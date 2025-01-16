@@ -1,4 +1,4 @@
-package com.example.ex2
+package com.example.ex2.Model
 import java.io.Serializable
 
 data class Student(
