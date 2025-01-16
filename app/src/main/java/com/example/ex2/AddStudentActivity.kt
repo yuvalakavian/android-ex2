@@ -6,6 +6,7 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 
 
 class AddStudentActivity : AppCompatActivity() {
@@ -13,6 +14,17 @@ class AddStudentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_student)
+
+        val toolbar: Toolbar = findViewById(R.id.main_toolbar)
+        setSupportActionBar(toolbar)
+
+        // Enable the back button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        // Handle navigation click
+        toolbar.setNavigationOnClickListener {
+            onBackPressedDispatcher.onBackPressed() // Go back to the previous screen
+        }
 
         val button_add_student = findViewById<Button>(R.id.button_add_student)
         val button_cancel = findViewById<Button>(R.id.edit_student_details_activity_button_cancel)

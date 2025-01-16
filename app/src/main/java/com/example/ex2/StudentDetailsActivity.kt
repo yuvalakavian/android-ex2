@@ -1,11 +1,12 @@
 package com.example.ex2
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
-import android.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 
 class StudentDetailsActivity : AppCompatActivity() {
@@ -20,16 +21,29 @@ class StudentDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_details)
 
+        val toolbar: Toolbar = findViewById(R.id.main_toolbar)
+        setSupportActionBar(toolbar)
+
+        // Enable the back button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        // Handle navigation click
+        toolbar.setNavigationOnClickListener {
+            onBackPressedDispatcher.onBackPressed() // Go back to the previous screen
+        }
+
+        // Retrieve intent extras
         studentId = intent.getStringExtra("id") ?: return
 
+        // Find views by ID
         textViewName = findViewById(R.id.student_details_activity_textview_name)
         textViewId = findViewById(R.id.student_details_activity_textview_id)
         textViewPhone = findViewById(R.id.student_details_activity_textview_phone)
         textViewAddress = findViewById(R.id.student_details_activity_textview_address)
         checkboxChecked = findViewById(R.id.student_details_activity_checkbox_checked)
 
+        // handle edit button
         val editButton: Button = findViewById(R.id.student_details_activity_button_edit)
-
         editButton.setOnClickListener {
             val intent = Intent(this, EditStudentActivity::class.java)
             intent.putExtra("name", textViewName.text)
@@ -42,6 +56,7 @@ class StudentDetailsActivity : AppCompatActivity() {
         }
     }
 
+    // Refreshes the student details displayed in the UI.
     private fun refreshDetails(id: String = studentId ) {
         val student = StudentRepository.getStudents().find { it.id == id }
         student?.let {
