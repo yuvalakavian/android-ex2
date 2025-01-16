@@ -26,7 +26,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView_name"
+            android:id="@+id/item_student_textview_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Student Name"
@@ -35,7 +35,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textView_id"
+            android:id="@+id/item_student_textview_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="123456789"
@@ -45,7 +45,7 @@
 
     <!-- Checkbox -->
     <CheckBox
-        android:id="@+id/checkBox_checked"
+        android:id="@+id/item_student_checkbox_checked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical" />

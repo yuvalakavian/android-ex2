@@ -27,14 +27,14 @@ class StudentsAdapter(
     override fun getItemCount(): Int = students.size
 
     inner class StudentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val nameTextView: TextView = view.findViewById(R.id.textView_name)
-        private val idTextView: TextView = view.findViewById(R.id.textView_id)
-        private val checkBox: CheckBox = view.findViewById(R.id.checkBox_checked)
+        private val item_student_textview_name: TextView = view.findViewById(R.id.item_student_textview_name)
+        private val item_student_textview_id: TextView = view.findViewById(R.id.item_student_textview_id)
+        private val item_student_checkbox_checked: CheckBox = view.findViewById(R.id.item_student_checkbox_checked)
 
         fun bind(student: Student) {
-            nameTextView.text = student.name
-            idTextView.text = student.id
-            checkBox.isChecked = student.isChecked
+            item_student_textview_name.text = student.name
+            item_student_textview_id.text = student.id
+            item_student_checkbox_checked.isChecked = student.isChecked
 
             itemView.setOnClickListener {
                 onRowClick(student)
@@ -45,9 +45,9 @@ class StudentsAdapter(
                 context.startActivity(intent)
             }
 
-            checkBox.setOnCheckedChangeListener(null) // Avoid triggering onCheckClick during bind
-            checkBox.isChecked = student.isChecked
-            checkBox.setOnCheckedChangeListener { _, isChecked ->
+            item_student_checkbox_checked.setOnCheckedChangeListener(null) // Avoid triggering onCheckClick during bind
+            item_student_checkbox_checked.isChecked = student.isChecked
+            item_student_checkbox_checked.setOnCheckedChangeListener { _, isChecked ->
                 student.isChecked = isChecked
                 onCheckClick(student)
             }
