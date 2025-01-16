@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.Material3.ActionBar"
-        app:title="Add Student" />
+        app:title="Edit Student" />
 
     <!-- Profile Picture -->
     <ImageView
@@ -42,7 +42,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageView_profile_picture"
-        />
+         />
 
     <!-- ID -->
     <EditText
@@ -54,7 +54,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_student_details_activity_edittext_name"
-        />
+         />
 
     <!-- Phone -->
     <EditText
@@ -66,7 +66,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_student_details_activity_edittext_id"
-       />
+         />
 
     <!-- Address -->
     <EditText
@@ -78,11 +78,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_student_details_activity_edittext_phone"
-        />
+         />
 
     <!-- Checked Checkbox -->
     <CheckBox
-        android:id="@+id/student_details_activity_checkbox_checked"
+        android:id="@+id/edit_student_details_activity_checkbox_checked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="checked"
@@ -95,12 +95,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="2"
+        android:weightSum="3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/student_details_activity_checkbox_checked"
-        >
+        app:layout_constraintTop_toBottomOf="@id/edit_student_details_activity_checkbox_checked"
+        android:layout_marginTop="16dp">
 
         <Button
             android:id="@+id/edit_student_details_activity_button_cancel"
@@ -110,7 +110,14 @@
             android:text="CANCEL" />
 
         <Button
-            android:id="@+id/button_add_student"
+            android:id="@+id/edit_student_details_activity_button_delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="DELETE" />
+
+        <Button
+            android:id="@+id/edit_student_details_activity_button_save"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
