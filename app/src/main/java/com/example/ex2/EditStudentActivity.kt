@@ -70,6 +70,7 @@ class EditStudentActivity : AppCompatActivity() {
             }
         }
 
+
         // Update student functionality
         buttonUpdateStudent.setOnClickListener {
             val id = editTextId.text.toString().trim()

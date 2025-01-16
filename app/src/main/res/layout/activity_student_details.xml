@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".StudentDetailsActivity">
 
     <!-- Toolbar for ActionBar -->
     <androidx.appcompat.widget.Toolbar
@@ -38,10 +38,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Name"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView_profile_picture"
-        />
+        app:layout_constraintTop_toBottomOf="@id/imageView_profile_picture" />
 
     <!-- ID -->
     <TextView
@@ -49,10 +50,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="ID"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/student_details_activity_textview_name"
-        />
+        app:layout_constraintTop_toBottomOf="@id/student_details_activity_textview_name" />
 
     <!-- Phone -->
     <TextView
@@ -60,10 +62,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Phone"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/student_details_activity_textview_id"
-        />
+        app:layout_constraintTop_toBottomOf="@id/student_details_activity_textview_id" />
 
     <!-- Address -->
     <TextView
@@ -71,10 +74,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Address"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/student_details_activity_textview_phone"
-        />
+        app:layout_constraintTop_toBottomOf="@id/student_details_activity_textview_phone" />
 
     <!-- Checked Checkbox -->
     <CheckBox
@@ -82,9 +86,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Checked"
+        android:clickable="false"
+        android:focusable="false"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/student_details_activity_textview_address"
-        />
+        app:layout_constraintTop_toBottomOf="@id/student_details_activity_textview_address" />
 
     <!-- Buttons -->
     <LinearLayout
